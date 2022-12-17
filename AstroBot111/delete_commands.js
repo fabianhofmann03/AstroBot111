@@ -1,17 +1,16 @@
+const { REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('./config.json');
 
-const Discord = require('discord.js');
+const rest = new REST({ version: '10' }).setToken(token);
 
-// Replace TOKEN with your bot's token
-const client = new Discord.Client({ token: `$token` });
+// ...
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+// for guild-based commands
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: [] })
+	.then(() => console.log('Successfully deleted all guild commands.'))
+	.catch(console.error);
 
-    // Unregister all commands
-    client.commands.forEach((value, key) => {
-        client.commands.delete(key);
-    });
-});
-
-client.login();
+// for global commands
+rest.put(Routes.applicationCommands(clientId), { body: [] })
+	.then(() => console.log('Successfully deleted all application commands.'))
+	.catch(console.error);
