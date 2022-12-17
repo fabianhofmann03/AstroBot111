@@ -1,8 +1,17 @@
-const { REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('./config.json');
 
-comms = client.commands;
+const Discord = require('discord.js');
 
-comms.foreach( com => {
-    com.delete();
+// Replace TOKEN with your bot's token
+const client = new Discord.Client({ token: `$token` });
+
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+
+    // Unregister all commands
+    client.commands.forEach((value, key) => {
+        client.commands.delete(key);
+    });
 });
+
+client.login();
