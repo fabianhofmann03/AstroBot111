@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "AstroBot111", "AstroBot111\AstroBot111.njsproj", "{310BF3F0-BABC-445B-A2AE-A8BA2A029707}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{310BF3F0-BABC-445B-A2AE-A8BA2A029707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310BF3F0-BABC-445B-A2AE-A8BA2A029707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310BF3F0-BABC-445B-A2AE-A8BA2A029707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310BF3F0-BABC-445B-A2AE-A8BA2A029707}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {188E4199-01BB-4F13-AA73-80C7FEEE2AD6}
+	EndGlobalSection
+EndGlobal

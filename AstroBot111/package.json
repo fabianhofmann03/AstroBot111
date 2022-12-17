@@ -1,0 +1,17 @@
+{
+  "name": "astro-bot111",
+  "version": "0.0.0",
+  "description": "AstroBot111",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  },
+  "eslintConfig": {},
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "openai": "^3.1.0"
+  }
+}
