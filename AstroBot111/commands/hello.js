@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const openai_token = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,7 +16,7 @@ module.exports = {
 async function askAI(person) {
 	const { Configuration, OpenAIApi } = require("openai");
 	const configuration = new Configuration({
-		apiKey: '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',
+		apiKey: openai_token,
 	});
 	const openai = new OpenAIApi(configuration);
 	console.log(`Chosen person: ` + `${person}`);

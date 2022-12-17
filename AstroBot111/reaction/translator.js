@@ -1,4 +1,5 @@
 const deepl = require('deepl-node');
+const deepl_token = require('../config.json');
 
 module.exports = {
     detectors: new Map()
@@ -20,8 +21,7 @@ module.exports = {
     },
 
     async execute(reaction) {
-        const authKey = "e77845e9-4490-73c3-e7b5-7c9b827532a3:fx";
-        const translator = new deepl.Translator(authKey);
+        const translator = new deepl.Translator(deepl_token);
 
         var language = 'de';
         switch (reaction.emoji.toString()) {
