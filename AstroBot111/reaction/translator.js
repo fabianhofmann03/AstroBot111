@@ -1,5 +1,5 @@
 const deepl = require('deepl-node');
-const deepl_token = require('../config.json');
+const { deepl_token } = require('../config.json');
 
 module.exports = {
     detectors: new Map()
@@ -44,10 +44,11 @@ module.exports = {
         }
 
         var content = reaction.message.content;
-        console.log(`Translating ${content} to ${language}`);
+        console.log(`Translating "${content}" to ${language}`);
         var res = "";
         (async () => {
             const result = await translator.translateText(content, null, language);
+            await console.log(`Translation: "${result.text}"`);
             await reaction.message.reply(result.text);
         })();
     }

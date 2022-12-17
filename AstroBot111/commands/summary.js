@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const openai_token = require('../config.json');
+const { openai_token } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,18 +10,13 @@ module.exports = {
 		let channel = await interaction.client.channels.cache.get(interaction.channelId);
 		let msgs = [];
 
-		var max_int = interaction.getInteger('lines') ?? 10;
-
+		var max_int = interaction.options.getInteger('lines') ?? 10;
 		if (isNaN(max_int) || max_int <= 0 || max_int == null) max_int = 10;
-		console.log(max_int);
-
 		var x = 0;
 
-		//await channel.messages.fetch({ limit: `${max_int * 10}` }).then(messages => {
 		await channel.messages.fetch().then(messages => {
 			messages.forEach(message => {
 				if (!message.author.bot && x < max_int) {
-					//console.log(message);
 					msgs.push(message);
 					x++;
 				}
@@ -33,7 +28,6 @@ module.exports = {
 			return;
 		}
 
-		//console.log(msgs);
 		msgs.reverse();
 		var msg = "";
 		msgs.forEach(message => {
@@ -43,7 +37,7 @@ module.exports = {
 		interaction.reply("Wait");
 
 		var repl = await askAI(msg);
-		await console.log(String(repl));
+		await console.log(repl.trim());
 		await interaction.editReply({ content: String(repl), ephemeral: false });
 	},
 };
@@ -51,15 +45,13 @@ module.exports = {
 async function askAI(conversation) {
 	const { Configuration, OpenAIApi } = require("openai");
 	const configuration = new Configuration({
-		apiKey: openai_token,
+		apiKey: `${openai_token}`,
 	});
-
-	console.log(conversation + "\nSummarize this conversation: ");
 
 	const openai = new OpenAIApi(configuration);
 	const completion = await openai.createCompletion({
 		model: "text-davinci-003",
-		prompt: conversation + "\nSum up the entire conversation without loosing information. Write in the language of the conversation: ",
+		prompt: conversation + "Sum up the entire conversation without loosing information. Write in the language of the conversation: ",
 		max_tokens: 1000,
 	});
 	return String(completion.data.choices[0].text);

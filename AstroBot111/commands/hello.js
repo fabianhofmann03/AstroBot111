@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const openai_token = require('../config.json');
+const { openai_token } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
