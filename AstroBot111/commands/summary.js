@@ -9,13 +9,7 @@ module.exports = {
 		let channel = await interaction.client.channels.cache.get(interaction.channelId);
 		let msgs = [];
 
-		var max_int = 10;
-		
-		try {
-			max_int = Number(`${interaction}`.split(":")[1]);
-		} catch {
-			max_int = 10;
-		}
+		var max_int = interaction.getInteger('lines') ?? 10;
 
 		if (isNaN(max_int) || max_int <= 0 || max_int == null) max_int = 10;
 		console.log(max_int);
@@ -23,7 +17,7 @@ module.exports = {
 		var x = 0;
 
 		//await channel.messages.fetch({ limit: `${max_int * 10}` }).then(messages => {
-		await channel.messages.fetch({ limit: 100 }).then(messages => {
+		await channel.messages.fetch().then(messages => {
 			messages.forEach(message => {
 				if (!message.author.bot && x < max_int) {
 					//console.log(message);
