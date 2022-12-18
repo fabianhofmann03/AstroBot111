@@ -28,7 +28,10 @@ module.exports = {
         .set("Schweden", "\u{1f1f8}\u{1f1ea}")
         .set("Slowakei", "\u{1f1f8}\u{1f1f0}")
         .set("Slowenien", "\u{1f1f8}\u{1f1ee}")
-        .set("Spanien", "\u{1f1ea}\u{1f1f8}"),
+        .set("Spanien", "\u{1f1ea}\u{1f1f8}")
+        .set("Tschechien", "\u{1f1e8}\u{1f1ff}")
+        .set("Truthahn", "\u{1f983}")
+        .set("Türkei", "\u{1f1f9}\u{1f1f7}"),
 
     async isValid(sign) {
         var isRight = false;
@@ -118,6 +121,13 @@ module.exports = {
                 break;
             case this.detectors.get("Spanien"):
                 language = 'es';
+                break;
+            case this.detectors.get("Tschechien"):
+                language = 'cs';
+                break;
+            case this.detectors.get("Truthahn"):
+            case this.detectors.get("Türkei"):
+                language = 'tr';
                 break;
         }
 
