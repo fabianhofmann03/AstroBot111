@@ -8,7 +8,8 @@ module.exports = {
         .set("D‰nemark", "\u{1f1e9}\u{1f1f0}")
         .set("÷sterreich", "\u{1f1e6}\u{1f1f9}")
         .set("Deutschland", "\u{1f1e9}\u{1f1ea}")
-        .set("England", "\u{1f1ec}\u{1f1e7}")
+        .set("Groﬂbritannien", "\u{1f1ec}\u{1f1e7}")
+        .set("England", "\u{1f3f4}\u{e0067}\u{e0062}\u{e0065}\u{e006e}\u{e0067}\u{e007f}")
         .set("USA", "\u{1f1fa}\u{1f1f8}")
         .set("Estland", "\u{1f1ea}\u{1f1ea}")
         .set("Finnland", "\u{1f1eb}\u{1f1ee}")
@@ -44,8 +45,11 @@ module.exports = {
                 language = 'de';
                 break;
             case this.detectors.get("USA"):
+                language = 'en-US';
+                break;
             case this.detectors.get("England"):
-                language = 'en';
+            case this.detectors.get("Groﬂbritannien"):
+                language = 'en-GB';
                 break;
             case this.detectors.get("Estland"):
                 language = 'et';
