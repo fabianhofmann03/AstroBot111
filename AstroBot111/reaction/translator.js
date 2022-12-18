@@ -14,7 +14,13 @@ module.exports = {
         .set("Estland", "\u{1f1ea}\u{1f1ea}")
         .set("Finnland", "\u{1f1eb}\u{1f1ee}")
         .set("Frankreich", "\u{1f1eb}\u{1f1f7}")
-        .set("Griechenland", "\u{1f1ec}\u{1f1f7}"),
+        .set("Griechenland", "\u{1f1ec}\u{1f1f7}")
+        .set("Indonesien", "\u{1f1ee}\u{1f1e9}")
+        .set("Italien", "\u{1f1ee}\u{1f1f9}")
+        .set("Japan", "\u{1f1ef}\u{1f1f5}")
+        .set("Lettland", "\u{1f1f1}\u{1f1fb}")
+        .set("Litauen", "\u{1f1f1}\u{1f1f9}")
+        .set("Niederlande", "\u{1f1f3}\u{1f1f1}"),
 
     async isValid(sign) {
         var isRight = false;
@@ -62,6 +68,24 @@ module.exports = {
                 break;
             case this.detectors.get("Griechenland"):
                 language = 'el';
+                break;
+            case this.detectors.get("Indonesien"):
+                language = 'id';
+                break;
+            case this.detectors.get("Italien"):
+                language = 'it';
+                break;
+            case this.detectors.get("Japan"):
+                language = 'ja';
+                break;
+            case this.detectors.get("Lettland"):
+                language = 'lv';
+                break;
+            case this.detectors.get("Litauen"):
+                language = 'lt';
+                break;
+            case this.detectors.get("Niederlande"):
+                language = 'nl';
                 break;
         }
 
