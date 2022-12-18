@@ -8,7 +8,12 @@ module.exports = {
         .set("Dänemark", "\u{1f1e9}\u{1f1f0}")
         .set("Österreich", "\u{1f1e6}\u{1f1f9}")
         .set("Deutschland", "\u{1f1e9}\u{1f1ea}")
-        .set("Frankreich", "\u{1f1eb}\u{1f1f7}"),
+        .set("England", "\u{1f1ec}\u{1f1e7}")
+        .set("USA", "\u{1f1fa}\u{1f1f8}")
+        .set("Estland", "\u{1f1ea}\u{1f1ea}")
+        .set("Finnland", "\u{1f1eb}\u{1f1ee}")
+        .set("Frankreich", "\u{1f1eb}\u{1f1f7}")
+        .set("Griechenland", "\u{1f1ec}\u{1f1f7}"),
 
     async isValid(sign) {
         var isRight = false;
@@ -38,8 +43,21 @@ module.exports = {
             case this.detectors.get("Deutschland"):
                 language = 'de';
                 break;
+            case this.detectors.get("USA"):
+            case this.detectors.get("England"):
+                language = 'en';
+                break;
+            case this.detectors.get("Estland"):
+                language = 'et';
+                break;
+            case this.detectors.get("Finnland"):
+                language = 'fi';
+                break;
             case this.detectors.get("Frankreich"):
                 language = 'fr';
+                break;
+            case this.detectors.get("Griechenland"):
+                language = 'el';
                 break;
         }
 
