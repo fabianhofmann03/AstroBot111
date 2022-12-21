@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Sag Hallo wie nie zu vor!')
 		.addStringOption(option => option.setName('person').setDescription("Choose the person you want to get greeted by").setRequired(true)),
 	async execute(interaction) {
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply();
 		var x = await askAI(interaction.options.getString('person'));
 		console.log(x);
 		await interaction.editReply({ content: String(x), ephemeral: false } );

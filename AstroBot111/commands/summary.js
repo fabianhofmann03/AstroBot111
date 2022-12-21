@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Fasst die letzten 10 Zeilen zusammen!')
 		.addIntegerOption(option => option.setName('lines').setDescription("Choose the number of lines which should be summarized").setRequired(false)),
 	async execute(interaction) {
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply();
 		let channel = await interaction.client.channels.cache.get(interaction.channelId);
 		let msgs = new Array();
 
