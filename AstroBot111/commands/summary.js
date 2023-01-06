@@ -8,8 +8,9 @@ module.exports = {
 		.addIntegerOption(option => option.setName('lines').setDescription("Choose the number of lines which should be summarized").setRequired(false))
 		.addBooleanOption(option => option.setName('recurisive').setDescription("Should the bot summarize its own messages").setRequired(false)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		let channel = await interaction.client.channels.cache.get(interaction.channelId);
-		let msgs = [];
+		let msgs = new Array();
 
 		var max_int = interaction.options.getInteger('lines') ?? 10;
 		var should_recurse = interaction.options.getBoolean('recursive') ?? false;
@@ -21,12 +22,15 @@ module.exports = {
 				if ((!message.author.bot || should_recurse) && x < max_int) {
 					msgs.push(message);
 					x++;
+					console.log("Valid message");
+				}else {
+					console.log(`Invalid message + ${x} + ${message.author.bot}`);
 				}
 			})
 		});
-
-		if (msgs.size < max_int) {
-			await interaction.reply("There are not enough messages.");
+		console.log(`${msgs.length} out of ${max_int} messages are valid.`);
+		if (msgs.length < max_int) {
+			await interaction.editReply("There are not enough messages.");
 			return;
 		}
 
@@ -35,8 +39,6 @@ module.exports = {
 		msgs.forEach(message => {
 			msg += message.author.username + ": " + message.content + "\n";
 		});
-
-		interaction.reply("Wait");
 
 		var repl = await askAI(msg);
 		await console.log(repl.trim());

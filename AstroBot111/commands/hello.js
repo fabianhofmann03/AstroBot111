@@ -7,9 +7,10 @@ module.exports = {
 		.setDescription('Sag Hallo wie nie zu vor!')
 		.addStringOption(option => option.setName('person').setDescription("Choose the person you want to get greeted by").setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		var x = await askAI(interaction.options.getString('person'));
 		console.log(x);
-		await interaction.reply({ content: String(x), ephemeral: false } );
+		await interaction.editReply({ content: String(x), ephemeral: false } );
 	},
 };
 
@@ -23,7 +24,7 @@ async function askAI(person) {
 	const completion = await openai.createCompletion({
 		model: "text-davinci-003",
 		prompt: `Say hello like ` + `${person}` + ` would do:`,
-		max_tokens: 50,
+		max_tokens: 200,
 
 	});
 	return String(completion.data.choices[0].text).trim();
