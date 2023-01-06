@@ -5,18 +5,20 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('summary')
 		.setDescription('Fasst die letzten 10 Zeilen zusammen!')
-		.addIntegerOption(option => option.setName('lines').setDescription("Choose the number of lines which should be summarized").setRequired(false)),
+		.addIntegerOption(option => option.setName('lines').setDescription("Choose the number of lines which should be summarized").setRequired(false))
+		.addBooleanOption(option => option.setName('recurisive').setDescription("Should the bot summarize its own messages").setRequired(false)),
 	async execute(interaction) {
 		let channel = await interaction.client.channels.cache.get(interaction.channelId);
 		let msgs = [];
 
 		var max_int = interaction.options.getInteger('lines') ?? 10;
+		var should_recurse = interaction.options.getBoolean('recursive') ?? false;
 		if (isNaN(max_int) || max_int <= 0 || max_int == null) max_int = 10;
 		var x = 0;
 
 		await channel.messages.fetch().then(messages => {
 			messages.forEach(message => {
-				if (!message.author.bot && x < max_int) {
+				if ((!message.author.bot || should_recurse) && x < max_int) {
 					msgs.push(message);
 					x++;
 				}
