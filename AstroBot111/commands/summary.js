@@ -22,9 +22,7 @@ module.exports = {
 				if ((!message.author.bot || should_recurse) && x < max_int) {
 					msgs.push(message);
 					x++;
-					console.log("Valid message");
 				}else {
-					console.log(`Invalid message + ${x} + ${message.author.bot}`);
 				}
 			})
 		});
